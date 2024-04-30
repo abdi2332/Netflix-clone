@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    }
+.popular{
+    margin-left: 15px;
+    position: relative;
+    top: -63px;
+
+}
+.popular-item{
+    display: flex;
+}
+
+.popular-list{
+    max-width:150px;
+    min-height: 250px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.popular-list>img{
+    width: 150px;
+    height: 220px;
+    border-radius: 6px;
+
+}
+
+.youtube-trailer{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: -55%;
+   z-index: 1000;
+   background-color: black;
+   color: white;
+   border-radius: 10px;
+   overflow: hidden;
+}
+.youtube-trailer iframe{
+    width: 100%;
+    height: 50%;
+    transform: scale(2.35);
+}
+.control{
+    position: relative;
+    top: 45px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.control>.pause-btn{
+    width: 32px;
+    background-color: white;
+    border: none;
+    border-radius: 76%;
+    cursor: pointer;
+}
+.control>.pause-btn >img{
+    position: relative;
+    right: 9px;
+}
+.description{
+    position: relative;
+    top: 50px;
+    margin-left: 10px;
+    color: white;
+}
+.description > p{
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.description > p >span{
+    color: rgb(88, 237, 88);
+    font-weight: bold;
+    margin-right: 7px;
+}
+.genre-list{
+    font-size: small;
+    margin-bottom: 70px;
+}
+.genre-list>#dot {
+    color: red; /* Set the color of the dots to red */
+    font-size: 1.7em; /* Increase the size of the dots */
+  }
+  
+  
