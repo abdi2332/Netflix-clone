@@ -1,5 +1,32 @@
-
-h5{
-  
-    color: white;
+.my-slider{
+    width: 95%;
+    margin: 30px auto;
+    margin-top: 200px;
 }
+
+.movies-container {
+    position: relative;
+  }
+  
+  .clicked-item {
+    position: absolute;
+    transform: translate(-50%, -75%);
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Set the width to match the image */
+    height: 400px; /* Set the height to match the image */
+}
+
+.clicked-item > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image fills the container */
+}
+
+  
+
+.images>img{
+    width: 200px;
+    height: 200px;
+}  
