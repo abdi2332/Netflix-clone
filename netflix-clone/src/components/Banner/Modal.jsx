@@ -36,6 +36,7 @@ const Modal = ({ detail, onClose, videoId,title,runtime,overview,casts,genres,mo
   const[film,setFilm]=useState([])
   const[id,setID]=useState('')
   const[modalCast,setModalCast]=useState([])
+  const [mute, setMute] = useState(true);
 
 
   const fetchModalvideo= async(movieId)=>{
@@ -51,6 +52,17 @@ const Modal = ({ detail, onClose, videoId,title,runtime,overview,casts,genres,mo
   const onReady = (event) => {
     setPlayer(event.target);
   };
+
+  const handleMute = () => {
+    if (player) {
+        if (mute) {
+            player.unMute();
+        } else {
+            player.mute();
+        }
+        setMute(prevMute => !prevMute);
+    }
+};
   
   const play=()=>{
     setPlaying(prev=>!prev)
@@ -102,6 +114,20 @@ const Modal = ({ detail, onClose, videoId,title,runtime,overview,casts,genres,mo
                 </button>
             </div>
             <button className='close-btn' onClick={onClose}>X</button>
+            <div className="player-control" onClick={handleMute}>
+                            {mute ?
+                                <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
+                                    <g clip-path="url(#sound-off_svg__clip0_3173_16686)" stroke="currentColor">
+                                        <path d="M18 14l2-2m2-2l-2 2m0 0l-2-2m2 2l2 2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M2 13.857v-3.714a2 2 0 012-2h2.9a1 1 0 00.55-.165l6-3.956a1 1 0 011.55.835v14.286a1 1 0 01-1.55.835l-6-3.956a1 1 0 00-.55-.165H4a2 2 0 01-2-2z"></path>
+                                    </g>
+                                </svg> :
+                                <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
+                                    <path d="M1 13.857v-3.714a2 2 0 012-2h2.9a1 1 0 00.55-.165l6-3.956a1 1 0 011.55.835v14.286a1 1 0 01-1.55.835l-6-3.956a1 1 0 00-.55-.165H3a2 2 0 01-2-2z" stroke="currentColor"></path>
+                                    <path d="M17.5 7.5S19 9 19 11.5s-1.5 4-1.5 4M20.5 4.5S23 7 23 11.5s-2.5 7-2.5 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            }
+                        </div>
             <div className='movie-detail'>
                 <div id='movie-description'>
                     <h2>{film.title?film.title:title}</h2>

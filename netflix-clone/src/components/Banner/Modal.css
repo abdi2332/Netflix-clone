@@ -187,3 +187,9 @@ body{
     color: grey;
     margin-right: 7px;  
 }
+.player-control{
+    position: absolute;
+    cursor: pointer;
+    right: 70px;
+    bottom: 120px;
+}

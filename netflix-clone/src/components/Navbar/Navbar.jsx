@@ -2,12 +2,31 @@ import React from 'react'
 import logo from '../Navbar/images/logo.svg'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
+import { useState,useEffect } from 'react'
 
 
 
 const Navbar = () => {
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+        if (window.scrollY > 0) {
+            setScrolled(true);
+        } else {
+            setScrolled(false);
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, []);
+
   return (
-    <div className='navbar-container'>
+    <div className={`navbar-container ${scrolled ? 'scrolled' : ''}`}>
         <ul className='navbar-list'>
         <img src={logo} alt="" />
         <li><Link to="/">Home</Link></li>

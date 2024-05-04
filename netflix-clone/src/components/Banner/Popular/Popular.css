@@ -6,7 +6,8 @@
     width: 96%;
     margin: 30px auto;
     position: relative;
-    top: -65px;
+    top: -70px;
+    box-shadow: 2px 2px 4px rgba(24, 24, 24, 0.3);
 }
 .popular-list{
     max-width:150px;
@@ -19,7 +20,7 @@
 }
 
 .popular-list>img{
-    width: 168px;
+    width: 165px;
     height: 220px;
     border-radius: 6px;
 
@@ -39,7 +40,7 @@
 .youtube-trailer iframe{
     width: 100%;
     height: 50%;
-    transform: scale(2.35);
+    transform: scale(2.3);
 }
 .control{
     position: relative;
@@ -81,5 +82,33 @@
     color: red; /* Set the color of the dots to red */
     font-size: 1.7em; /* Increase the size of the dots */
   }
-  
-  
+.prev-arrow{
+    position: absolute;
+    z-index: 999;
+    left: -25px;
+    top: 90px;
+    
+}
+.prev-arrow>button{
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+.next-arrow{
+    position: absolute;
+    z-index: 999;
+    right: -25px;
+    top: 90px;
+    background-color: transparent;
+}
+.next-arrow>button{
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+.youtube-trailer > .player-control{
+    cursor: pointer;
+    position: absolute;
+    top: 160px;
+}
