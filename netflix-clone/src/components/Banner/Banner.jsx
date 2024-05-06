@@ -7,6 +7,10 @@ import playe from '../Banner/images/images.png';
 import pause from '../Banner/images/pause-40.png';
 import Modal from './Modal';
 import Netflix from './Netflix/Netflix';
+import Horror from './Horror/Horror';
+import Tv from './Tv/Tv';
+import Talkshows from './Talkshows/Talkshows';
+import TopRate from './TopRated/TopRate';
 
 const Banner = () => {
     const [movies, setMovies] = useState([]);
@@ -140,6 +144,10 @@ const Banner = () => {
             )}
             <Popular />
             <Netflix />
+            <Horror/>
+            <Tv/>
+            <Talkshows/>
+            <TopRate/>
         </div>
     );
 }

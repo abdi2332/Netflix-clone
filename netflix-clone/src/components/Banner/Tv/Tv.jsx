@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CustomNextArrow,CustomPrevArrow } from '../Popular/CustomArrow';
 
-const Netflix = () => {
+const Tv = () => {
     const [popular, setPopular] = useState([]);
     const [player, setPlayer] = useState(null);
     const [playing, setPlaying] = useState(true);
@@ -56,7 +56,7 @@ const Netflix = () => {
     };
 
     const fetchPopular = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`);
+        const response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`);
         const data = await response.json();
         setPopular(data.results);
     };
@@ -121,7 +121,7 @@ const Netflix = () => {
 
     return (
         <div className='popular'>
-            <h3>Only On Netflix</h3>
+            <h3>Popular TV Shows</h3>
             <div className='popular-item'>
                 <Slider {...settings}>
                     {popular.map((movie, index) => (
@@ -182,4 +182,5 @@ const Netflix = () => {
     );
 };
 
-export default Netflix;
+export default Tv;
+

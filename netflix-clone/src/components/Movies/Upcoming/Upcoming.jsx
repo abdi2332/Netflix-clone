@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import YouTube from 'react-youtube';
 import { API_KEY, convertToHours } from '../../../Data';
 import '../Popular/Popular.css';
-import playe from '../images/images.png';
-import pause from '../images/pause-40.png';
+import playe from '../../Banner/images/images.png';
+import pause from '../../Banner/images/pause-40.png';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CustomNextArrow,CustomPrevArrow } from '../Popular/CustomArrow';
 
-const Netflix = () => {
+const Upcoming = () => {
     const [popular, setPopular] = useState([]);
     const [player, setPlayer] = useState(null);
     const [playing, setPlaying] = useState(true);
@@ -56,10 +56,12 @@ const Netflix = () => {
     };
 
     const fetchPopular = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`);
+        const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`);
         const data = await response.json();
         setPopular(data.results);
+        console.log(popular);
     };
+
     const onReady = (event) => {
         setPlayer(event.target);
     };
@@ -96,10 +98,9 @@ const Netflix = () => {
     };
 
     const fetchVideo = async (movieId) => {
-        const response = await fetch(`https://api.themoviedb.org/3/tv/${movieId}?api_key=${API_KEY}&append_to_response=videos,credits`);
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,credits`);
         const data = await response.json();
         setVideoData(data);
-        console.log(videoData)
         const video = data.videos.results.find(video => video.type === 'Trailer');
         return video.key;
     };
@@ -121,7 +122,7 @@ const Netflix = () => {
 
     return (
         <div className='popular'>
-            <h3>Only On Netflix</h3>
+            <h3>Upcoming</h3>
             <div className='popular-item'>
                 <Slider {...settings}>
                     {popular.map((movie, index) => (
@@ -160,8 +161,8 @@ const Netflix = () => {
                                     </button>
                                 </div>
                                 <div className="description">
-                                    <h3>{movie.name}</h3>
-                                    <p><span>69% match </span>{videoData.number_of_seasons} Seasons {videoData.number_of_episodes} episodes</p>
+                                    <h3>{movie.title}</h3>
+                                    <p><span>69% match </span>{convertToHours(videoData.runtime)}</p>
                                     <p className='genre-list'>
                                         {videoData.genres.map((genre, index) => (
                                             <React.Fragment key={genre.id}>
@@ -182,4 +183,4 @@ const Netflix = () => {
     );
 };
 
-export default Netflix;
+export default Upcoming;

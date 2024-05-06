@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CustomNextArrow,CustomPrevArrow } from '../Popular/CustomArrow';
 
-const Netflix = () => {
+const Talkshows = () => {
     const [popular, setPopular] = useState([]);
     const [player, setPlayer] = useState(null);
     const [playing, setPlaying] = useState(true);
@@ -56,7 +56,7 @@ const Netflix = () => {
     };
 
     const fetchPopular = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`);
+        const response = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${API_KEY}`);
         const data = await response.json();
         setPopular(data.results);
     };
@@ -101,7 +101,7 @@ const Netflix = () => {
         setVideoData(data);
         console.log(videoData)
         const video = data.videos.results.find(video => video.type === 'Trailer');
-        return video.key;
+        return video && video.key ? video.key : null;
     };
 
     useEffect(() => {
@@ -110,9 +110,10 @@ const Netflix = () => {
 
     const handleMouseEnter = async (movieId, e) => {
         const videoKey = await fetchVideo(movieId);
+    
         setHoveredMovie({ id: movieId, videoKey });
-        setPosition({ top: e.clientY, left: e.clientX });
-    };
+        setPosition({ top: e.clientY, left: e.clientX });}
+    
 
     const handleMouseLeave = () => {
         setHoveredMovie(null);
@@ -121,7 +122,7 @@ const Netflix = () => {
 
     return (
         <div className='popular'>
-            <h3>Only On Netflix</h3>
+            <h3>Talk Shows</h3>
             <div className='popular-item'>
                 <Slider {...settings}>
                     {popular.map((movie, index) => (
@@ -134,7 +135,7 @@ const Netflix = () => {
                 </Slider>
 
                 {popular.map((movie, index) => {
-                    if (hoveredMovie && hoveredMovie.id === movie.id) {
+                    if (hoveredMovie && hoveredMovie.id === movie.id&&hoveredMovie.videoKey!==null) {
                         return (
                             <div className='youtube-trailer'  onMouseLeave={handleMouseLeave} key={index} style={{ top: position.top, left: position.left }}>
                                 <YouTube videoId={hoveredMovie.videoKey} opts={{ playerVars: { controls: 0, autoplay: 1, mute: 1, rel: '0', disablekb: 1 } }} onReady={onReady} />
@@ -159,7 +160,7 @@ const Netflix = () => {
                                         <path d="M7 20V9" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                                     </button>
                                 </div>
-                                <div className="description">
+                                 <div className="description">
                                     <h3>{movie.name}</h3>
                                     <p><span>69% match </span>{videoData.number_of_seasons} Seasons {videoData.number_of_episodes} episodes</p>
                                     <p className='genre-list'>
@@ -182,4 +183,5 @@ const Netflix = () => {
     );
 };
 
-export default Netflix;
+export default Talkshows;
+
