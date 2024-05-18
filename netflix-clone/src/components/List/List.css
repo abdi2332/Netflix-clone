@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    }
+h2{
+    margin-top: 80px;
+    margin-left: 40px;
+}
+.list-container {
+    margin-top: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    margin-left: 40px;
+    gap: 10px; /* Add some space between items */
+}
+
+.fav-list {
+    width: 25vw; /* Each item takes up 25% of the viewport width */
+    max-width: 150px; /* Maximum width for each item */
+    height: auto; /* Height will adjust based on the content */
+    max-height: 200px; /* Maximum height for each item */
+    margin-bottom: 20px; /* Add some space below each item */
+}
+
+.fav-list img {
+    width: 100%; /* Make the image fill its container */
+    height: 100%; /* Make the image fill its container */
+    object-fit: cover; /* Cover the entire container, maintaining aspect ratio */
+    border-radius: 7px;
+}
+
+.youtube-trailers{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    transform: translate(-30%, -80%);
+   z-index: 1000;
+   background-color: black;
+   color: white;
+   border-radius: 10px;
+   overflow: hidden;
+}
+.youtube-trailers iframe{
+    width: 100%;
+    height: 50%;
+    transform: scale(2.3);
+}
+.youtube-trailers > .player-controls{
+    cursor: pointer;
+    position: absolute;
+    top: 160px;
+    right: 50px;
+}

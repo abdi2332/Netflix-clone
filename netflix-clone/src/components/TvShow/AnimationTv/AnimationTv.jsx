@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import YouTube from 'react-youtube';
 import { API_KEY, convertToHours } from '../../../Data';
-import '../Popular/Popular.css';
-import playe from '../images/images.png';
-import pause from '../images/pause-40.png';
+import '../Series/Popular.css';
+import playe from '../../Banner/images/images.png';
+import pause from '../../Banner/images/pause-40.png';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CustomNextArrow,CustomPrevArrow } from '../Popular/CustomArrow';
+import { CustomNextArrow,CustomPrevArrow } from '../Series/CustomArrow';
 
-const Tv = ({handleList,List}) => {
+const AnimationTv = () => {
     const [popular, setPopular] = useState([]);
     const [player, setPlayer] = useState(null);
     const [playing, setPlaying] = useState(true);
@@ -26,11 +26,37 @@ const Tv = ({handleList,List}) => {
         slidesToShow: 7,
         slidesToScroll: 3,
         prevArrow: <CustomPrevArrow />,
-        nextArrow: <CustomNextArrow />
+        nextArrow: <CustomNextArrow />,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                infinite: true,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                initialSlide: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
     };
 
     const fetchPopular = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`);
+        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=16&language=en-US`)
         const data = await response.json();
         setPopular(data.results);
     };
@@ -92,17 +118,14 @@ const Tv = ({handleList,List}) => {
         setHoveredMovie(null);
         setPlaying(true);
     };
-    const addItem = (item) => {
-        handleList(item);
-    };
 
     return (
-        <div className='populars'>
-            <h3>Popular TV Shows</h3>
-            <div className='popular-items'>
+        <div className='popular'>
+            <h3>Animation</h3>
+            <div className='popular-item'>
                 <Slider {...settings}>
                     {popular.map((movie, index) => (
-                        <div key={index} className='popular-lists'
+                        <div key={index} className='popular-list'
                             onClick={(e) => { handleMouseEnter(movie.id, e); setIsOpen(!isOpen); }}
                           >
                             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
@@ -128,11 +151,10 @@ const Tv = ({handleList,List}) => {
                                     <path d="M17.5 7.5S19 9 19 11.5s-1.5 4-1.5 4M20.5 4.5S23 7 23 11.5s-2.5 7-2.5 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             }
-                        </div>  
-                        <div className='control'>
+                        </div>
+                                <div className='control'>
                                     <button className='pause-btn' onClick={play}><img width='17px' src={playing ? pause : playe} alt="" /></button>
-                                    <button className='add-btn' onClick={()=>addItem(movie)}>  {List.some((elem) => elem.id === movie.id) ? (
-                                    <span>&#10003;</span>) : (<span>&#43;</span>)}</button>
+                                    <button className='add-btn'>+</button>
                                     <button className='like-btn'><svg width="1.5em" height="1.5em" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M16.472 20H4.1a.6.6 0 01-.6-.6V9.6a.6.6 0 01.6-.6h2.768a2 2 0 001.715-.971l2.71-4.517a1.631 1.631 0 012.961 1.308l-1.022 3.408a.6.6 0 00.574.772h4.575a2 2 0 011.93 2.526l-1.91 7A2 2 0 0116.473 20z" stroke="currentColor" strokeLinecap="round"></path>
                                         <path d="M7 20V9" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                                     </button>
@@ -160,5 +182,5 @@ const Tv = ({handleList,List}) => {
     );
 };
 
-export default Tv;
+export default AnimationTv;
 

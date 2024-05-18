@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import YouTube from 'react-youtube';
 import { API_KEY, random } from '../../Data';
-import './Banner.css';
-import Popular from './Popular/Popular';
+import './TvShow.css';
 import playe from '../Banner/images/images.png';
 import pause from '../Banner/images/pause-40.png';
 import Modal from './Modal';
-import Netflix from './Netflix/Netflix';
-import Horror from './Horror/Horror';
+import Series from './Series/Series';
 import Tv from './Tv/Tv';
-import Talkshows from './Talkshows/Talkshows';
-import TopRate from './TopRated/TopRate';
-import useLocalStorageList from '../Localstorage';
+import Crime from './Crime/Crime';
+import Reality from './Reality/Reality';
+import AnimationTv from './AnimationTv/AnimationTv';
 
-const Banner = () => {
+const TvShow = () => {
     const [movies, setMovies] = useState([]);
     const [videoId, setVideoId] = useState('');
     const [playVideo, setPlayVideo] = useState(false);
@@ -22,22 +20,21 @@ const Banner = () => {
     const [cast, setCast] = useState([]);
     const [mute, setMute] = useState(true);
     const [player, setPlayer] = useState(null);
-    const [list, setList] =useLocalStorageList("myList")
-
-    console.log(list)
 
     const fetchData = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`);
+        const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`);
         const data = await response.json();
+        console.log(data)
         setMovies(data.results[random()]);
     };
 
     const fetchDetail = async (movieId) => {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=credits,genres`);
+        const response = await fetch(`https://api.themoviedb.org/3/tv/${movieId}?api_key=${API_KEY}&append_to_response=videos,credits,seasons`);
         const data = await response.json();
         setMovieData(data);
         setCast(data.credits.cast.slice(0, 8));
     };
+    console.log(movieData)
     const handleMute = () => {
         if (player) {
             if (mute) {
@@ -49,22 +46,10 @@ const Banner = () => {
         }
     };
 
-    const handleList = (item) => {
-        const index = list.findIndex((listItem) => listItem.id === item.id);
-        let updatedList;
-        if (index === -1) {
-            updatedList = [...list, item]; // Add item if it doesn't exist in the list
-        } else {
-            updatedList = list.filter((_, i) => i !== index); // Remove item if it exists in the list
-        }
-        setList(updatedList);
-    };
-    
-
     const getVideos = async (movieId) => {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`);
+        const response = await fetch(`https://api.themoviedb.org/3/tv/${movieId}?api_key=${API_KEY}&append_to_response=videos,credits`);
         const data = await response.json();
-        const officialTrailer = data.results.find(elem => elem.name === "Official Trailer");
+        const officialTrailer = data.videos.results.find(video => video.type === 'Trailer');
         if (officialTrailer) {
             setVideoId(officialTrailer.key);
         }
@@ -133,7 +118,6 @@ const Banner = () => {
                         <h1>{movies.title}</h1>
                         <p>{movies && movies.overview}</p>
                         <button id='play' onClick={playPause}><img width="17px" src={playVideo ? playe : pause} alt="" />{playVideo ? 'play' : 'pause'}</button>
-                        <button id='small' onClick={playPause}><img width="13px" src={playVideo ? playe : pause} alt="" /></button>
                         <button onClick={() => setDetail(true)} id='more'>
                             <svg width="1em" height="1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
                                 <path d="M12 11.5v5M12 7.51l.01-.011M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -145,33 +129,26 @@ const Banner = () => {
                             src={movieData.backdrop_path}
                             image={movieData.poster_path}
                             detail={detail}
-                            title={movieData.name}
+                            title={movieData.title}
                             overview={movieData.overview}
                             onClose={() => setDetail(false)}
+                            runtime={movieData.runtime}
                             genres={movieData.genres}
                             movieData={movieData}
                             Id={movieData.id}
                             moviedata={movieData}
                             casts={cast}
-
                         />
                     </div>
                 </div>
             )}
-            <Popular handleList={handleList}
-                        List={list}/>
-            <Netflix handleList={handleList}
-            List={list}/>
-            <Horror handleList={handleList}
-            List={list}/>
-            <Tv handleList={handleList}
-            List={list}/>
-            <Talkshows handleList={handleList}
-            List={list}/>
-            <TopRate handleList={handleList}
-            List={list}/>
+           <Series/>
+           <Tv/>
+           <Crime/>
+           <AnimationTv/>
+           <Reality/>
         </div>
     );
 }
 
-export default Banner;
+export default TvShow;

@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CustomNextArrow,CustomPrevArrow } from '../Popular/CustomArrow';
 
-const Talkshows = () => {
+const Talkshows = ({handleList,List}) => {
     const [popular, setPopular] = useState([]);
     const [player, setPlayer] = useState(null);
     const [playing, setPlaying] = useState(true);
@@ -26,33 +26,7 @@ const Talkshows = () => {
         slidesToShow: 7,
         slidesToScroll: 3,
         prevArrow: <CustomPrevArrow />,
-        nextArrow: <CustomNextArrow />,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                infinite: true,
-                dots: true
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                initialSlide: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-          ]
+        nextArrow: <CustomNextArrow />
     };
 
     const fetchPopular = async () => {
@@ -119,14 +93,17 @@ const Talkshows = () => {
         setHoveredMovie(null);
         setPlaying(true);
     };
+    const addItem = (item) => {
+        handleList(item);
+    };
 
     return (
-        <div className='popular'>
+        <div className='populars'>
             <h3>Talk Shows</h3>
-            <div className='popular-item'>
+            <div className='popular-items'>
                 <Slider {...settings}>
                     {popular.map((movie, index) => (
-                        <div key={index} className='popular-list'
+                        <div key={index} className='popular-lists'
                             onClick={(e) => { handleMouseEnter(movie.id, e); setIsOpen(!isOpen); }}
                           >
                             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
@@ -155,7 +132,8 @@ const Talkshows = () => {
                         </div>
                                 <div className='control'>
                                     <button className='pause-btn' onClick={play}><img width='17px' src={playing ? pause : playe} alt="" /></button>
-                                    <button className='add-btn'>+</button>
+                                    <button className='add-btn' onClick={()=>addItem(movie)}>  {List.some((elem) => elem.id === movie.id) ? (
+                                    <span>&#10003;</span>) : (<span>&#43;</span>)}</button>
                                     <button className='like-btn'><svg width="1.5em" height="1.5em" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M16.472 20H4.1a.6.6 0 01-.6-.6V9.6a.6.6 0 01.6-.6h2.768a2 2 0 001.715-.971l2.71-4.517a1.631 1.631 0 012.961 1.308l-1.022 3.408a.6.6 0 00.574.772h4.575a2 2 0 011.93 2.526l-1.91 7A2 2 0 0116.473 20z" stroke="currentColor" strokeLinecap="round"></path>
                                         <path d="M7 20V9" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                                     </button>
