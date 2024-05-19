@@ -131,7 +131,7 @@ const Modal = ({ detail, onClose, videoId,title,runtime,overview,casts,genres,mo
             <div className='movie-detail'>
                 <div id='movie-description'>
                     <h2>{film.title?film.title:title}</h2>
-                    <p><span>69% match </span>{convertToHours(film.runtime?film.runtime:runtime)}</p>
+                    <p><span>69% match </span>{convertToHours(film.runtime?film.runtime:movieData.runtime)}</p>
                     <p>{film.overview?film.overview:overview}</p>
                 </div>
                 <div id='movie-producers'>

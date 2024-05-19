@@ -77,7 +77,6 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
-
 .banner-info > #play > img {
   position: relative;
   top: 2px;
@@ -110,95 +109,46 @@ body {
   right: 120px;
   bottom: 200px;
 }
-
-@media (max-width: 1024px) {
+@media (max-width: 630px) {
   .video-trailer {
-    height: 275px; /* Half of 550px */
+    bottom: 30px;
   }
-
-  .video-trailer iframe {
-    transform: scale(1.75);
-  }
-
-  .banner-info {
-    max-width: 70%;
-    top: 137.5px; /* Half of 275px */
-    margin-left: 20px;
-  }
-
-  .banner-info > #play,
   .banner-info > #more {
-    padding: 10px 20px;
-    font-size: 1em;
-  }
-
-  .trailer > .player-control {
-    right: 100px;
-    bottom: 137.5px; /* Adjusted for new height */
+  display: none;
   }
 }
-
-@media (max-width: 768px) {
-  .movie-Container,
-  .video-trailer {
-    height: 275px; /* Half of 550px */
-  }
-
-  .video-trailer iframe {
-    transform: scale(1.2);
-  }
-
-  .banner-info {
-    max-width: 80%;
-    top: 137.5px; /* Half of 275px */
-    margin-left: 15px;
-  }
-
-  .banner-info > h1 {
-    font-size: 1.5em;
-  }
-  .banner-info > #play,
-  .banner-info > #more {
-    display: none;
-  }
-
-  .trailer > .player-control {
-    right: 80px;
-    bottom: 137.5px; /* Adjusted for new height */
-  }
+@media (max-width: 574px) {
+.banner-info > #more,.banner-info>#play {
+display: none;
+bottom: 50px;
+ }
 }
 
 @media (max-width: 480px) {
-  .movie-Container,
+  .populars>h3{
+    margin-bottom: 5px;
+  }
+  .list > img{
+   max-height: 400px;
+  }
   .video-trailer {
-    height: 275px; /* Half of 550px */
-  }
-
-  .video-trailer iframe {
-    transform: scale(1);
-  }
-
-  .banner-info {
-    max-width: 90%;
-    top: 137.5px; /* Half of 275px */
-    margin-left: 10px;
+    bottom: 50px;
   }
   .banner-info >#small{
     display: block;
     position: relative;
-    bottom: 80px;
-    left: 120px;
+    bottom: 200px;
+    left: 150px;
     border: none;
-    background-color: white;
     padding: 5px;
-    border-radius: 12px;
   }
   .banner-info > #small > img {
     position: relative;
     top: 2px;
   }
   .banner-info > h1 {
-    margin-top: 120px;
+    position: relative;
+    bottom: 50px;
     font-size: 1.2em;
   }
 

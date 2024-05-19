@@ -58,7 +58,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar-container ${scrolled ? 'scrolled' : ''}`}>
       <ul className='navbar-list'>
-        <li key="home-logo">
+        <li key="home-logo" id='home-logo'>
           <img src={logo} alt="Logo" />
         </li>
         <li key="home-link">

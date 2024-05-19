@@ -1,109 +1,164 @@
 * {
-    margin: 0;
-    box-sizing: border-box;
-  }
-  
-  .movie-Container {
-    width: 100%;
-    height: 550px;
-    color: white;
-  }
-  
-  .list {
-    width: 100%;
-    height: 550px;
-    max-height: 700px;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-  
-  .list > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: black;
+}
+
+.movie-Container {
+  width: 100%;
+  height: 550px;
+  color: white;
+}
+
+.list {
+  width: 100%;
+  height: 550px;
+  max-height: 700px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.list > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-trailer {
+  position: relative;
+  width: 100%;
+  height: 550px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.video-trailer:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.video-trailer iframe {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  overflow: hidden;
+  transform: scale(1.75);
+}
+
+.banner-info {
+  position: absolute;
+  max-width: 50%;
+  margin-left: 30px;
+  top: 250px;
+  z-index: 1;
+}
+
+.banner-info > h1 {
+  margin-bottom: 10px;
+}
+
+.banner-info > #play {
+  padding: 12px 25px;
+  margin-right: 10px;
+  background-color: white;
+  border: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.banner-info > #play > img {
+  position: relative;
+  top: 2px;
+  right: 10px;
+}
+.banner-info > #small{
+  display: none;
+}
+.banner-info > #more {
+  padding: 12px 25px;
+  margin-right: 10px;
+  background-color: rgb(91, 90, 90);
+  color: white;
+  border: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.banner-info > #more > svg {
+  position: relative;
+  top: 2px;
+  right: 10px;
+}
+
+.trailer > .player-control {
+  cursor: pointer;
+  position: absolute;
+  right: 120px;
+  bottom: 200px;
+}
+@media (max-width: 630px) {
   .video-trailer {
-    position: relative;
-    width: 100%;
-    height: 550px;
-    overflow: hidden;
-    margin-bottom: 10px;
+    bottom: 30px;
   }
-  
-  .video-trailer:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
-  }
-  
-  .video-trailer iframe {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    top: 0;
-    overflow: hidden;
-    transform: scale(1.75);
-  }
-  
-  .banner-info {
-    position: absolute;
-    max-width: 50%;
-    margin-left: 30px;
-    top: 250px;
-    z-index: 1;
-  }
-  
-  .banner-info > h1 {
-    margin-bottom: 10px;
-  }
-  
-  .banner-info > p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-  
-  .banner-info > #play {
-    padding: 12px 25px 12px;
-    margin-right: 10px;
-    background-color: white;
-    border: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .banner-info > #play > img {
-    position: relative;
-    top: 2px;
-    right: 10px;
-  }
-  
   .banner-info > #more {
-    padding: 12px 25px 12px;
-    margin-right: 10px;
-    background-color: rgb(91, 90, 90);
-    color: white;
-    border: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
+  display: none;
   }
-  
-  .banner-info > #more > svg {
+}
+@media (max-width: 574px) {
+.banner-info > #more,.banner-info>#play {
+display: none;
+bottom: 50px;
+ }
+}
+
+@media (max-width: 480px) {
+  .populars>h3{
+    margin-bottom: 5px;
+  }
+  .list > img{
+   max-height: 400px;
+  }
+  .video-trailer {
+    bottom: 50px;
+  }
+  .banner-info >#small{
+    display: block;
+    position: relative;
+    background-color: transparent;
+    bottom: 110px;
+    left: 150px;
+    border: none;
+    padding: 5px;
+  }
+  .banner-info > #small > img {
     position: relative;
     top: 2px;
-    right: 10px;
   }
-  .trailer>.player-control{
-    cursor: pointer;
-    position: absolute;
-    right: 120px;
-    bottom: 200px;
+  .banner-info > h1 {
+    position: relative;
+    top: 20px;
+    font-size: 1.2em;
   }
+
+  .banner-info > p {
+    display: none;
+  }
+
+  .banner-info > #play,
+  .banner-info > #more {
+    display: none;
+  }
+}

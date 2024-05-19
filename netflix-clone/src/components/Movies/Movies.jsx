@@ -4,6 +4,8 @@ import { API_KEY, random } from '../../Data';
 import './Movies.css';
 import playe from '../Banner/images/images.png';
 import pause from '../Banner/images/pause-40.png';
+import icon1 from '../Banner/images/play-button.png'
+import icon2 from '../Banner/images/pause.png'
 import Modal from '../Banner/Modal';
 import Popular from './Popular/Popular';
 import Upcoming from './Upcoming/Upcoming';
@@ -58,6 +60,13 @@ const Movies = () => {
 
     const playPause = () => {
         setPlayVideo(prev => !prev);
+    };
+
+    const truncateText = (text, maxLength) => {
+        if (text.length <= maxLength) {
+            return text;
+        }
+        return text.slice(0, maxLength) + '...';
     };
 
     useEffect(() => {
@@ -117,8 +126,9 @@ const Movies = () => {
                     }
                     <div className='banner-info'>
                         <h1>{movies.title}</h1>
-                        <p>{movies && movies.overview}</p>
+                        <p>{movieData.overview && truncateText(movies.overview, 120)}</p>
                         <button id='play' onClick={playPause}><img width="17px" src={playVideo ? playe : pause} alt="" />{playVideo ? 'play' : 'pause'}</button>
+                        <button id='small' onClick={playPause}><img width="30px" src={playVideo ? icon1 : icon2} alt="" /></button>
                         <button onClick={() => setDetail(true)} id='more'>
                             <svg width="1em" height="1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
                                 <path d="M12 11.5v5M12 7.51l.01-.011M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>

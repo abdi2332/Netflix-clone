@@ -20,13 +20,28 @@ const Tv = ({handleList,List}) => {
     const [mute, setMute] = useState(true);
 
     var settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 7,
         slidesToScroll: 3,
         prevArrow: <CustomPrevArrow />,
-        nextArrow: <CustomNextArrow />
+        nextArrow: <CustomNextArrow />,
+        responsive: [
+            {
+              breakpoint: 780,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 1
+              }
+            }, {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 4,
+                  slidesToScroll: 1
+                }
+              }
+          ]
     };
 
     const fetchPopular = async () => {

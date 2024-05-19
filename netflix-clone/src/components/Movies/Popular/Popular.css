@@ -1,113 +1,170 @@
-*{
+* {
     margin: 0;
     box-sizing: border-box;
-    }
-.popular{
-    width: 96%;
+}
+
+.populars {
     margin: 30px auto;
+    width: 96%;
     position: relative;
     top: -70px;
     box-shadow: 2px 2px 4px rgba(24, 24, 24, 0.3);
 }
-.popular-list{
-    max-width:150px;
-    min-height: 100%;
-    margin-right: 10px;
-    margin-top: 10px;
+
+.popular-lists {
+    width: 30%; 
+    max-width: 170px; 
+    margin-right: 2%;
+    margin-top: 2%; 
     border-radius: 10px;
     position: relative;
+    cursor: pointer;
+    float: left; 
+    box-sizing: border-box; 
 }
 
-.popular-list>img{
-    width: 165px;
-    height: 220px;
+.popular-lists > img {
+    padding-right: 5px;
+    width: 100%; 
+    height: auto; 
+    max-height: 220px; 
     border-radius: 6px;
-
 }
 
-.youtube-trailer{
+.youtube-trailer {
     width: 400px;
     height: 400px;
     position: absolute;
     transform: translate(-50%, -125%);
-   z-index: 1000;
-   background-color: black;
-   color: white;
-   border-radius: 10px;
-   overflow: hidden;
+    z-index: 1000;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
-.youtube-trailer iframe{
+
+.youtube-trailer iframe {
     width: 100%;
     height: 50%;
     transform: scale(2.3);
 }
-.control{
+
+.control {
     position: relative;
     top: 45px;
     margin-left: 10px;
     margin-bottom: 20px;
 }
-.control>.pause-btn{
+
+.control > .pause-btn {
     width: 32px;
     background-color: white;
     border: none;
     border-radius: 76%;
     cursor: pointer;
 }
-.control>.pause-btn >img{
+
+.control > .pause-btn > img {
     position: relative;
     right: 9px;
 }
-.description{
+
+.description {
     position: relative;
     top: 50px;
     margin-left: 10px;
     color: white;
 }
-.description > p{
+
+.description > p {
     margin-top: 15px;
     margin-bottom: 10px;
 }
-.description > p >span{
+
+.description > p > span {
     color: rgb(88, 237, 88);
     font-weight: bold;
     margin-right: 7px;
 }
-.genre-list{
+
+.genre-list {
     font-size: small;
     margin-bottom: 70px;
 }
-.genre-list>#dot {
+
+.genre-list > #dot {
     color: red; /* Set the color of the dots to red */
     font-size: 1.7em; /* Increase the size of the dots */
-  }
-.prev-arrow{
+}
+
+.prev-arrow {
     position: absolute;
     z-index: 999;
     left: -25px;
-    top: 90px;
-    
+    top: 50%;
+    transform: translateY(-50%);
 }
-.prev-arrow>button{
+
+.prev-arrow > button {
     background-color: transparent;
     color: white;
     border: none;
 }
 
-.next-arrow{
+.next-arrow {
     position: absolute;
     z-index: 999;
     right: -25px;
-    top: 90px;
+    top: 50%;
+    transform: translateY(-50%);
     background-color: transparent;
 }
-.next-arrow>button{
+
+.next-arrow > button {
     background-color: transparent;
     color: white;
     border: none;
 }
-.youtube-trailer > .player-control{
+
+.youtube-trailers > .player-control {
     cursor: pointer;
     position: absolute;
     top: 160px;
+}
+
+@media (max-width: 1024px) {
+    .prev-arrow,
+    .next-arrow {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .prev-arrow {
+        left: -15px;
+    }
+
+    .next-arrow {
+        right: -15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .populars>h3{
+        margin-bottom: 10px;
+    }
+    .prev-arrow,
+    .next-arrow {
+        display: none;
+    }
+}
+@media (max-width: 480px) {
+    .populars{
+        top: -175px;
+    }
+    .populars>h3{
+        margin-top: 10px;
+    }
+    .youtube-trailer{
+        display: none;
+    }
 }

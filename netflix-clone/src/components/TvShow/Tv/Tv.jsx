@@ -29,29 +29,18 @@ const Tv = () => {
         nextArrow: <CustomNextArrow />,
         responsive: [
             {
-              breakpoint: 1024,
+              breakpoint: 780,
               settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                infinite: true,
-                dots: true
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                initialSlide: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
+                slidesToShow: 5,
                 slidesToScroll: 1
               }
-            }
+            }, {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 4,
+                  slidesToScroll: 1
+                }
+              }
           ]
     };
 
@@ -120,12 +109,12 @@ const Tv = () => {
     };
 
     return (
-        <div className='popular'>
+        <div className='populars'>
             <h3>Popular TV Shows</h3>
-            <div className='popular-item'>
+            <div className='popular-items'>
                 <Slider {...settings}>
                     {popular.map((movie, index) => (
-                        <div key={index} className='popular-list'
+                        <div key={index} className='popular-lists'
                             onClick={(e) => { handleMouseEnter(movie.id, e); setIsOpen(!isOpen); }}
                           >
                             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
