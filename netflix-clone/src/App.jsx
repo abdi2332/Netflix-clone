@@ -6,6 +6,7 @@ import Movies from './components/Movies/Movies'
 import Tvshow from './components/TvShow/Tvshow'
 import List from './components/List/List'
 import Genres from './components/Genres/Genres'
+import Search from './components/Search/Search'
 const App = () => {
   return (
     <>
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/Movies' element={<Movies/>}/>
         <Route path='/TvShow' element={<Tvshow/>}/>
         <Route path='/List' element={<List/>}/>
+        <Route path='/Search' element={<Search/>}/>
         <Route path="/Genres/:movie/:id/:genreName" element={<Genres />} />
        </Routes>
        </>
